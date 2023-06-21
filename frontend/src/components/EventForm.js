@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Form } from "react-router-dom";
 
 import classes from "./EventForm.module.css";
 
@@ -8,8 +8,9 @@ function EventForm({ method, event }) {
     navigate("..");
   }
 
+  // to support extracting data from Fom element there shoul be name attr for inputs
   return (
-    <form className={classes.form}>
+    <Form method="post" className={classes.form}>
       <p>
         <label htmlFor="title">Title</label>
         <input
@@ -56,7 +57,7 @@ function EventForm({ method, event }) {
         </button>
         <button>Save</button>
       </div>
-    </form>
+    </Form>
   );
 }
 

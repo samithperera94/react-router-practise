@@ -4,6 +4,7 @@ import {
   json,
   useLoaderData,
   useRouteLoaderData,
+  redirect,
 } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
@@ -23,4 +24,16 @@ export const loader = async ({ request, params }) => {
   } else {
     return response;
   }
+};
+
+export const action = async ({ request, params }) => {
+  const eventId = params.eventID;
+  const response = await fetch("http://localhost:8080/events/" + eventId, {
+    method: request.method,
+  });
+
+  if (!response.ok) {
+    throw json({ message: "Could not fdelete event" }, { status: 500 });
+  }
+  return redirect("/events");
 };
